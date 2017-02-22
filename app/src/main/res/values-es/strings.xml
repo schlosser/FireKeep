@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">FireKeep</string>
+    <string name="action_save">Salva</string>
+    <string name="action_settings">Ajustes</string>
+    <string name="action_signout">Desconecta</string>
+    <string name="no_internet_connection">"Sin conexión a Internet "</string>
+    <string name="sign_in_cancelled">Ingresar cancelado.</string>
+    <string name="unknown_error">"Problema desconocido "</string>
+    <string name="unknown_sign_in_response">Respuesta de signo desconocido.</string>
+</resources>

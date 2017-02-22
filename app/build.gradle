@@ -5,7 +5,7 @@ android {
     buildToolsVersion "25.0.0"
     defaultConfig {
         applicationId "io.schlosser.firekeep"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 24
         versionCode 1
         versionName "1.0"
@@ -26,5 +26,17 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:24.2.1'
     compile 'com.android.support:design:24.2.1'
+    compile 'com.google.firebase:firebase-config:10.2.0'
+    compile 'com.google.firebase:firebase-core:10.2.0'
+    compile 'com.firebaseui:firebase-ui-auth:1.2.0'
+    compile 'com.firebaseui:firebase-ui-database:1.2.0'
+    compile 'com.google.firebase:firebase-database:10.2.0'
+    compile 'com.google.firebase:firebase-crash:10.2.0'
     testCompile 'junit:junit:4.12'
 }
+
+
+
+
+
+apply plugin: 'com.google.gms.google-services'
