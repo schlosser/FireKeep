@@ -9,9 +9,26 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="io.schlosser.firekeep.NewNoteActivity">
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/color_input_layout"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/text_input_layout"
+        android:layout_height="wrap_content"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:visibility="gone">
+
+        <Spinner
+            android:id="@+id/color"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" />
+    </android.support.design.widget.TextInputLayout>
+
     <android.support.design.widget.TextInputLayout
         android:id="@+id/text_input_layout"
         android:layout_width="match_parent"
+        android:theme="@style/TextLabel"
         android:layout_height="wrap_content">
 
         <EditText
@@ -19,20 +36,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Note Text..."/>
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/color_input_layout"
-        android:layout_width="match_parent"
-        android:layout_below="@+id/text_input_layout"
-        android:layout_height="wrap_content"
-        android:visibility="gone">
-
-        <EditText
-            android:id="@+id/color"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Color"/>
     </android.support.design.widget.TextInputLayout>
 
 </RelativeLayout>

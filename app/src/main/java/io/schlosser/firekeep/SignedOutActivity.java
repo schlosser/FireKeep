@@ -31,6 +31,7 @@ public class SignedOutActivity extends AppCompatActivity {
         rootView = findViewById(R.id.content_main);
 
 
+
         FirebaseAuth auth = FirebaseAuth.getInstance();
         if (auth.getCurrentUser() != null) {
             startActivity(new Intent(this, MainActivity.class));

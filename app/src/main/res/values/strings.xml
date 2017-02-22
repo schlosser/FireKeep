@@ -10,4 +10,13 @@
     <string name="config_success">Remote config values fetched successfully.</string>
     <string name="config_throttled">Remote Config was throttled.</string>
     <string name="action_refreshconfig">Refresh Config</string>
+    <string-array name="colors">
+        <item>White</item>
+        <item>Blue</item>
+        <item>Gray</item>
+        <item>Green</item>
+        <item>Yellow</item>
+        <item>Red</item>
+        <item>Orange</item>
+    </string-array>
 </resources>

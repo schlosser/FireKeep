@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.MainThread;
@@ -12,6 +13,7 @@ import android.support.annotation.StringRes;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -38,7 +40,9 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfigFetchThrottledExcept
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Locale;
+import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -50,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseRemoteConfig config;
     private View rootView;
     private long configCacheExpiry;
+    private static final String COLOR_PICKER_ENABLED = "color_picker_enabled";
 
     /** User properties **/
     private static final String BUILD_DEBUG = "BUILD_DEBUG";
@@ -64,7 +69,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         rootView = findViewById(R.id.content_main);
-
 
         analytics = FirebaseAnalytics.getInstance(this);
         auth = FirebaseAuth.getInstance();
@@ -148,6 +152,9 @@ public class MainActivity extends AppCompatActivity {
                 final String id = note.getId();
 
                 noteHolder.setText(text);
+                if (config.getBoolean(COLOR_PICKER_ENABLED)) {
+                    noteHolder.setColor(color);
+                }
 
                 noteHolder.mView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -177,6 +184,11 @@ public class MainActivity extends AppCompatActivity {
         public void setText(String text) {
             TextView textView = (TextView) mView.findViewById(R.id.text);
             textView.setText(text);
+        }
+
+        public void setColor(String color) {
+            CardView noteCard = (CardView) mView.findViewById(R.id.card_view);
+            noteCard.setCardBackgroundColor(NoteColor.getColor(color));
         }
     }
 
@@ -228,5 +240,40 @@ public class MainActivity extends AppCompatActivity {
     @MainThread
     private void showSnackbar(@StringRes int errorMessageRes) {
         Snackbar.make(rootView, errorMessageRes, Snackbar.LENGTH_LONG).show();
+    }
+
+    public enum NoteColor {
+        BLUE("BLUE", "#03A9F4"),
+        ORANGE("ORANGE", "#FFC107"),
+        GREEN("GREEN", "#CDDC39"),
+        WHITE("WHITE", "#FFFFFF"),
+        DEFAULT("DEFAULT", "#FFFFFF"),
+        RED("RED", "#EF5350"),
+        GRAY("GRAY", "#E0E0E0"),
+        YELLOW("YELLOW", "#FFEB3B");
+
+        private final String name;
+        private final String hex;
+
+        NoteColor(String name, String hex) {
+            this.name = name;
+            this.hex = hex;
+        }
+
+        public static int getColor(String color) {
+            String colorKey = "";
+            if (color == null || color.trim() == "") {
+                colorKey = "DEFAULT";
+            } else {
+                colorKey = color.toUpperCase();
+            }
+//            if (Arrays.asList(NoteColor.values()).contains(color.toUpperCase())) {
+//            }
+//            else {
+//                throw new IllegalArgumentException("Unknown color value.");
+//            }
+
+            return Color.parseColor(NoteColor.valueOf(colorKey).hex);
+        }
     }
 }

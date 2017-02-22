@@ -8,4 +8,13 @@
     <string name="sign_in_cancelled">Ingresar cancelado.</string>
     <string name="unknown_error">"Problema desconocido "</string>
     <string name="unknown_sign_in_response">Respuesta de signo desconocido.</string>
+    <string-array name="colors">
+        <item>Blanco</item>
+        <item>Azul</item>
+        <item>Gris</item>
+        <item>Verde</item>
+        <item>Amarillo</item>
+        <item>Rojo</item>
+        <item>Naranja</item>
+    </string-array>
 </resources>
